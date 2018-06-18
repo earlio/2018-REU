@@ -1,0 +1,4 @@
+# age mortality fertility
+0 1 0
+1 0.75 4
+2 0.4 5

@@ -1,0 +1,81 @@
+// as of 2018.06.15 in the A.M.
+
+
+questions:
+we'll need to run this on medusa to find out when we'll hit our head on the ceiling
+value of other-than-pairwise MRCA? (for k != 2)
+how much memory will our table take up? what are Medusa constraints?
+should we be using Moran instead?
+
+life table features:
+fecundity variance
+
+"historical record" struct:
+things to track:
+year born
+parent
+number of children?
+allelic state? isMutant?
+
+we'll have an array called "currentlyAlive" that will have contain a "historical record" struct and additional information:
+currentAge (so we can let our generation 0 organisms all be born on the same day, and so we don't have to do extra math to determine appropriate fecundity)
+
+== create geneology
+
+initialize currentlyAlive list (using life tables)
+
+
+timeStep loop:
+
+	determine who is reproducing and how many times (constraints on open birth slots notwithstanding), add to pendingBirths
+	
+	determine who is dying, remove them from the currentlyAlive list
+	
+	randomly select (n - currentlyAlive.length) organisms from pendingBirths // this step can be deleted when we stop constraining census size
+	
+	add new (selected) pendingBirths organisms to currentlyAlive
+	
+	// ? What if 
+
+== finding MRCA
+
+O2n:
+
+keep a giant list of all creatures: id, day born, and parent id. (The value of a matrix data structure breaks down because we're never looking up by year first EXCEPT for at the end of the model when we do comparisons by age cohort; size n here is giving us a false sense of control)
+
+find ancestor a1's birthdate
+
+find ancestor b1's birthdate
+
+ax = a1
+bx = b1
+
+// this method should be extendable for sample sizes larger than 2
+
+// Per Brett, also need to evaluate case where ax.birthdate = bx.birthdate just by chance
+
+while ax.birtdate != bx.birtdhate :
+	
+	while ax birtdate < bx birtdhate :
+	ax = ax.ancestor
+	
+	while ax birtdate > bx birtdhate :
+	bx = bx.ancestor
+	
+	
+if ax = bx:
+	print("MRCA = ", ax)
+else:
+	// we made it to genration 0 with no mrca
+	
+
+
+
+
+
+
+
+
+
+
+// log_n?
